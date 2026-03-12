@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Dev! 🎉</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+ 
+  :root {
+    --pink: #ff6b9d;
+    --peach: #ffb347;
+    --mint: #43e97b;
+    --sky: #38f9d7;
+    --lavender: #a78bfa;
+    --yellow: #ffd93d;
+    --bg: #0f0a1e;
+    --card-bg: rgba(255,255,255,0.06);
+    --white: #fff;
+  }
+ 
+  html { scroll-behavior: smooth; }
+ 
+  body {
+    background: var(--bg);
+    font-family: 'Nunito', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ctext y='24' font-size='24'%3E⭐%3C/text%3E%3C/svg%3E"), auto;
+  }
+ 
+  /* ───── ANIMATED BG MESH ───── */
+  .bg-mesh {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse at 15% 20%, rgba(255,107,157,.18) 0%, transparent 55%),
+      radial-gradient(ellipse at 85% 10%, rgba(167,139,250,.22) 0%, transparent 50%),
+      radial-gradient(ellipse at 70% 80%, rgba(67,233,123,.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 30% 90%, rgba(255,179,71,.18) 0%, transparent 50%),
+      #0f0a1e;
+    animation: meshShift 10s ease-in-out infinite alternate;
+  }
+  @keyframes meshShift {
+    from { filter: hue-rotate(0deg) brightness(1); }
+    to   { filter: hue-rotate(20deg) brightness(1.05); }
+  }
+ 
+  /* ───── FLOATING BALLOONS ───── */
+  .balloon {
+    position: fixed; bottom: -80px; font-size: 2.2rem;
+    animation: floatUp linear infinite;
+    pointer-events: none; z-index: 1; opacity: .85;
+    filter: drop-shadow(0 0 8px rgba(255,107,157,.5));
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(0) rotate(-5deg); opacity: .8; }
+    50%  { transform: translateY(-45vh) rotate(5deg); opacity: .9; }
+    100% { transform: translateY(-100vh) rotate(-3deg); opacity: 0; }
+  }
+ 
+  /* ───── STARS ───── */
+  .star-dot {
+    position: fixed; border-radius: 50%; background: white;
+    pointer-events: none; z-index: 1;
+    animation: blink var(--d) ease-in-out infinite alternate;
+  }
+  @keyframes blink {
+    from { opacity: .1; transform: scale(.7); }
+    to   { opacity: 1;  transform: scale(1.3); }
+  }
+ 
+  /* ───── MAIN LAYOUT ───── */
+  main {
+    position: relative; z-index: 10;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 3rem 1.5rem 5rem;
+    min-height: 100vh;
+  }
+ 
+  /* ───── TOP BANNER ───── */
+  .banner {
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    animation: dropIn .9s cubic-bezier(.34,1.56,.64,1) both;
+  }
+  @keyframes dropIn {
+    from { opacity: 0; transform: translateY(-60px) scale(.8); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+ 
+  .party-tag {
+    display: inline-flex; align-items: center; gap: .4rem;
+    background: linear-gradient(135deg, var(--pink), var(--lavender));
+    color: white; border-radius: 50px;
+    padding: .4rem 1.2rem; font-size: .75rem;
+    font-weight: 700; letter-spacing: .15em; text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    box-shadow: 0 0 20px rgba(255,107,157,.5);
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  @keyframes glow {
+    from { box-shadow: 0 0 20px rgba(255,107,157,.4); }
+    to   { box-shadow: 0 0 40px rgba(255,107,157,.8), 0 0 80px rgba(167,139,250,.3); }
+  }
+ 
+  h1.main-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(3rem, 10vw, 6rem);
+    line-height: 1;
+    background: linear-gradient(135deg, var(--yellow) 0%, var(--pink) 40%, var(--lavender) 80%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 30px rgba(255,107,157,.4));
+    animation: titlePop .8s cubic-bezier(.34,1.56,.64,1) .2s both;
+  }
+  @keyframes titlePop {
+    from { opacity: 0; transform: scale(.5) rotate(-5deg); }
+    to   { opacity: 1; transform: scale(1) rotate(0deg); }
+  }
+ 
+  h2.name-title {
+    font-family: 'Fredoka One', cursive;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    color: var(--yellow);
+    filter: drop-shadow(0 0 20px rgba(255,217,61,.6));
+    margin-top: .2rem;
+    animation: namePop .8s cubic-bezier(.34,1.56,.64,1) .4s both;
+  }
+  @keyframes namePop {
+    from { opacity: 0; transform: scale(1.4); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+ 
+  /* ───── EMOJI TICKER ───── */
+  .ticker-wrap {
+    width: 100%; overflow: hidden;
+    margin: 1.5rem 0;
+    mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+  }
+  .ticker {
+    display: flex; gap: 1.5rem;
+    animation: ticker 18s linear infinite;
+    white-space: nowrap;
+  }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .ticker span { font-size: 1.6rem; }
+ 
+  /* ───── CAKE SECTION ───── */
+  .cake-section {
+    margin: .5rem 0 2rem;
+    animation: floatBob 3s ease-in-out infinite;
+    font-size: 5rem;
+    filter: drop-shadow(0 0 20px rgba(255,179,71,.5));
+    cursor: pointer;
+    user-select: none;
+  }
+  @keyframes floatBob {
+    0%,100% { transform: translateY(0) rotate(-3deg); }
+    50%      { transform: translateY(-12px) rotate(3deg); }
+  }
+  .cake-section:active { transform: scale(.9) rotate(0deg) !important; }
+ 
+  /* ───── MESSAGE CARDS ───── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.2rem;
+    max-width: 700px; width: 100%;
+    margin-bottom: 2.5rem;
+  }
+ 
+  .card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 20px;
+    padding: 1.8rem 1.5rem;
+    backdrop-filter: blur(14px);
+    transition: transform .3s, box-shadow .3s;
+    animation: cardSlide .7s cubic-bezier(.34,1.56,.64,1) both;
+    position: relative; overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, var(--c1,.3), var(--c2,.1));
+    opacity: 0; transition: opacity .3s;
+    border-radius: 20px;
+  }
+  .card:hover { transform: translateY(-6px) rotate(.5deg); }
+  .card:hover::before { opacity: 1; }
+  .card:hover { box-shadow: 0 20px 60px rgba(0,0,0,.3), 0 0 40px var(--glow, rgba(255,107,157,.2)); }
+ 
+  .card:nth-child(1) { --c1: rgba(255,107,157,.15); --c2: rgba(255,179,71,.1); --glow: rgba(255,107,157,.3); animation-delay:.1s; }
+  .card:nth-child(2) { --c1: rgba(167,139,250,.15); --c2: rgba(56,249,215,.1); --glow: rgba(167,139,250,.3); animation-delay:.2s; }
+  .card:nth-child(3) { --c1: rgba(67,233,123,.15); --c2: rgba(255,217,61,.1); --glow: rgba(67,233,123,.3); animation-delay:.3s; }
+ 
+  @keyframes cardSlide {
+    from { opacity: 0; transform: translateY(40px) scale(.9); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+ 
+  .card-icon { font-size: 2.2rem; margin-bottom: .8rem; display: block; }
+  .card h3 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.25rem; color: var(--white);
+    margin-bottom: .5rem;
+  }
+  .card p {
+    font-size: .92rem; line-height: 1.75;
+    color: rgba(255,255,255,.65);
+    font-weight: 300;
+  }
+ 
+  /* ───── BIG HEART MESSAGE ───── */
+  .heart-section {
+    max-width: 600px; width: 100%;
+    background: linear-gradient(135deg, rgba(255,107,157,.12), rgba(167,139,250,.12));
+    border: 1px solid rgba(255,107,157,.3);
+    border-radius: 28px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    position: relative; overflow: hidden;
+    margin-bottom: 2.5rem;
+    animation: cardSlide .7s cubic-bezier(.34,1.56,.64,1) .4s both;
+    box-shadow: 0 0 60px rgba(255,107,157,.15);
+  }
+  .heart-section::before {
+    content: '💖';
+    position: absolute; font-size: 10rem;
+    opacity: .04; top: -20px; right: -20px;
+    pointer-events: none;
+  }
+  .heart-section h3 {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.6rem; color: var(--pink);
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 10px rgba(255,107,157,.5));
+  }
+  .heart-section p {
+    font-size: 1rem; line-height: 1.9;
+    color: rgba(255,255,255,.75);
+  }
+  .heart-section p strong { color: var(--yellow); font-weight: 700; }
+ 
+  /* ───── LETTER SECTION ───── */
+  .letter-section {
+    max-width: 620px; width: 100%;
+    margin-bottom: 2.5rem;
+    animation: cardSlide .7s cubic-bezier(.34,1.56,.64,1) .55s both;
+  }
+ 
+  .letter-toggle {
+    width: 100%;
+    background: linear-gradient(135deg, rgba(255,107,157,.15), rgba(167,139,250,.15));
+    border: 1px solid rgba(255,107,157,.35);
+    border-radius: 20px;
+    padding: 1.2rem 1.8rem;
+    color: white;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.15rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: all .3s;
+    backdrop-filter: blur(14px);
+  }
+  .letter-toggle:hover {
+    background: linear-gradient(135deg, rgba(255,107,157,.25), rgba(167,139,250,.25));
+    box-shadow: 0 0 30px rgba(255,107,157,.25);
+    transform: translateY(-2px);
+  }
+  .letter-toggle .arrow {
+    transition: transform .4s cubic-bezier(.34,1.56,.64,1);
+    font-style: normal; font-size: 1.2rem;
+  }
+  .letter-toggle.open .arrow { transform: rotate(180deg); }
+ 
+  .letter-body {
+    max-height: 0; overflow: hidden;
+    transition: max-height .7s ease, opacity .5s ease, padding .4s ease;
+    opacity: 0;
+    background: linear-gradient(160deg, rgba(15,10,30,.95), rgba(40,10,30,.95));
+    border: 1px solid rgba(255,107,157,.2);
+    border-top: none;
+    border-radius: 0 0 20px 20px;
+    padding: 0 2rem;
+  }
+  .letter-body.open {
+    max-height: 900px;
+    opacity: 1;
+    padding: 2rem 2rem 2.2rem;
+  }
+ 
+  .letter-inner {
+    position: relative;
+  }
+  .letter-inner::before {
+    content: '❝';
+    position: absolute; top: -1rem; left: -1rem;
+    font-size: 4rem; color: rgba(255,107,157,.15);
+    font-family: Georgia, serif; line-height: 1;
+    pointer-events: none;
+  }
+ 
+  .letter-line {
+    font-size: .97rem; line-height: 2;
+    color: rgba(255,255,255,.78);
+    font-weight: 300;
+    margin-bottom: 1rem;
+  }
+  .letter-line:last-child { margin-bottom: 0; }
+  .letter-line .hl { color: var(--pink); font-weight: 600; }
+  .letter-line .hl2 { color: var(--yellow); font-weight: 600; }
+ 
+  .letter-sign {
+    margin-top: 1.6rem;
+    text-align: right;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.1rem;
+    color: var(--lavender);
+    opacity: .85;
+  }
+ 
+  /* ───── WISH BUTTON ───── */
+  .btn-wrap { text-align: center; margin-bottom: 2.5rem; }
+  .wish-btn {
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.3rem; letter-spacing: .05em;
+    padding: 1rem 3rem; border: none; border-radius: 50px;
+    background: linear-gradient(135deg, var(--pink), var(--peach));
+    color: white; cursor: pointer;
+    box-shadow: 0 8px 30px rgba(255,107,157,.5);
+    transition: transform .2s, box-shadow .2s;
+    position: relative; overflow: hidden;
+    animation: cardSlide .7s cubic-bezier(.34,1.56,.64,1) .5s both;
+  }
+  .wish-btn::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,.25), transparent);
+    opacity: 0; transition: opacity .2s;
+    border-radius: 50px;
+  }
+  .wish-btn:hover { transform: scale(1.07) translateY(-3px); box-shadow: 0 16px 40px rgba(255,107,157,.6); }
+  .wish-btn:hover::after { opacity: 1; }
+  .wish-btn:active { transform: scale(.97); }
+ 
+  /* ───── CONFETTI ───── */
+  .confetti-piece {
+    position: fixed;
+    pointer-events: none; z-index: 999;
+    animation: confFall var(--dur) ease-in forwards;
+    border-radius: var(--br, 3px);
+  }
+  @keyframes confFall {
+    0%   { opacity: 1; transform: translate(0,0) rotate(0deg) scale(1); }
+    80%  { opacity: 1; }
+    100% { opacity: 0; transform: translate(var(--tx), var(--ty)) rotate(var(--rot)) scale(.5); }
+  }
+ 
+  /* ───── FOOTER ───── */
+  footer {
+    text-align: center;
+    font-size: .8rem;
+    color: rgba(255,255,255,.2);
+    letter-spacing: .1em;
+    animation: cardSlide .7s .6s both;
+  }
+  footer span { color: var(--pink); }
+ 
+  /* ───── POPUP TOAST ───── */
+  #toast {
+    position: fixed; bottom: 2rem; left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: linear-gradient(135deg, #ff6b9d, #a78bfa);
+    color: white; font-family: 'Fredoka One', cursive;
+    font-size: 1.1rem; padding: .8rem 2rem; border-radius: 50px;
+    box-shadow: 0 8px 30px rgba(255,107,157,.5);
+    transition: transform .4s cubic-bezier(.34,1.56,.64,1);
+    z-index: 9999; white-space: nowrap;
+  }
+  #toast.show { transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+ 
+<div class="bg-mesh"></div>
+<div id="toast">🎂 Wishes sent to Dev! 💌</div>
+ 
+<main>
+ 
+  <!-- TOP BANNER -->
+  <div class="banner">
+    <div class="party-tag">🎊 It's A Special Day!</div>
+    <h1 class="main-title">Happy Birthday</h1>
+    <h2 class="name-title">Dev! 🎉</h2>
+  </div>
+ 
+  <!-- EMOJI TICKER -->
+  <div class="ticker-wrap">
+    <div class="ticker" id="ticker"></div>
+  </div>
+ 
+  <!-- BOUNCING CAKE -->
+  <div class="cake-section" id="cake" onclick="cakePop()" title="Click me!">🎂</div>
+ 
+  <!-- MESSAGE CARDS -->
+  <div class="cards-grid">
+    <div class="card">
+      <span class="card-icon">🎈</span>
+      <h3>You're Amazing!</h3>
+      <p>Every single day you make the world a brighter, funnier, and way more wonderful place just by being you.</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">✨</span>
+      <h3>This Year is Yours</h3>
+      <p>May this birthday be the beginning of the most incredible, laugh-filled, adventure-packed year of your life!</p>
+    </div>
+    <div class="card">
+      <span class="card-icon">🌟</span>
+      <h3>You Deserve It All</h3>
+      <p>All the cake, all the smiles, all the good vibes — today is 100% about celebrating the legend that is Dev.</p>
+    </div>
+  </div>
+ 
+  <!-- HEART MESSAGE -->
+  <div class="heart-section">
+    <h3>💖 A Message From My Heart...</h3>
+    <p>
+      Dev, today is not just any ordinary day — today is the day the world got
+      <strong>a little more beautiful</strong>, because you were born. 🌟<br><br>
+ 
+      You carry this energy that is impossible to ignore — the kind that makes
+      people feel seen, heard, and somehow lighter just by being around you.
+      That is a rare, rare gift. And on your birthday, I just want you to feel
+      even a fraction of the <strong>warmth you give to others</strong>. 🌸<br><br>
+ 
+      You deserve a day full of laughter so loud your cheeks hurt,
+      surprises that make your eyes light up, and moments that remind you —
+      you are <strong>so deeply loved</strong>, more than you probably realise. 💛<br><br>
+ 
+      Here's to you, Dev. To your beautiful smile, your kind soul,
+      and everything wonderful that you are. 🥂✨<br><br>
+ 
+      <strong>Happy Birthday — make it the most magical one yet! 🎂💖</strong>
+    </p>
+  </div>
+ 
+  <!-- PERSONAL LETTER -->
+  <div class="letter-section">
+    <button class="letter-toggle" id="letterBtn" onclick="toggleLetter()">
+      <span>💌 &nbsp; A Letter From My Heart</span>
+      <span class="arrow">▼</span>
+    </button>
+    <div class="letter-body" id="letterBody">
+      <div class="letter-inner">
+        <p class="letter-line">
+          Dev, <span class="hl">thank you</span> — for staying in tune with me during a time
+          when I had almost stopped believing in myself. There was a phase when I was lost,
+          when the world felt heavy, and I had quietly convinced myself that maybe
+          I just wasn't good enough. And somehow, you were there.
+          You listened. You didn't judge. <span class="hl2">You reminded me that I am a good person.</span>
+          I don't think you'll ever fully understand how much that meant to me. 🤍
+        </p>
+        <p class="letter-line">
+          I know there is something between us — something that <span class="hl">cannot be spoken</span>,
+          something that may never fully become what a part of me quietly wishes it could be.
+          I understand that. I have made peace with it.
+          I know my feelings. I know who you are. And more than anything,
+          I <span class="hl2">respect</span> the space between us, even when it is difficult to.
+        </p>
+        <p class="letter-line">
+          There will always be a corner of my heart that dreamed of a world where
+          we could have been something more — where <span class="hl">you could have been mine</span>,
+          and I could have been yours. But I would never ask you to be something
+          you cannot be right now. You are busy. You are building your life.
+          And I respect every single part of that. 💛
+        </p>
+        <p class="letter-line">
+          I won't lie — I still feel that quiet urge to <span class="hl">talk to you</span>,
+          to hear your voice, to see your face, to see that smile of yours
+          that somehow makes everything feel softer and warmer.
+          There are moments when I miss you in a way I can't put into words.
+          But I also know there is a line — and I will always, always
+          <span class="hl2">choose to respect it</span>, because that is how much I care about you. 🌸
+        </p>
+        <p class="letter-line">
+          So this message is simply to tell you — on your birthday, of all days —
+          that what I felt was <span class="hl">real</span>, and beautiful, and it will always
+          live quietly within me. Accepting you as my friend is not a loss.
+          It is not settling. It is a <span class="hl2">gift I am truly grateful for</span>,
+          because having you in my life in any form is still something I treasure.
+        </p>
+        <p class="letter-line">
+          <span class="hl">Happy Birthday, Dev.</span> 🎂 I hope today reminds you of just how
+          special, how rare, and how deeply valued you are —
+          not just by me, but by everyone whose life you have touched.
+          You deserve every bit of joy this world has to offer. ✨
+        </p>
+        <div class="letter-sign">— Someone who truly, quietly means every word 💗</div>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- WISH BUTTON -->
+  <div class="btn-wrap">
+    <button class="wish-btn" onclick="makeWish()">
+      🎉 Click to Send Wishes! 🎉
+    </button>
+  </div>
+ 
+  <footer>Made with <span>💗</span> just for you, Dev &nbsp;·&nbsp; Have the best day ever!</footer>
+</main>
+ 
+<script>
+  /* ── Stars ── */
+  for (let i = 0; i < 120; i++) {
+    const s = document.createElement('div');
+    s.className = 'star-dot';
+    const sz = Math.random() * 2.5 + .5;
+    s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${(Math.random()*3+1.5).toFixed(1)}s;animation-delay:${(Math.random()*5).toFixed(1)}s`;
+    document.body.appendChild(s);
+  }
+ 
+  /* ── Balloons ── */
+  const balloonEmojis = ['🎈','🎀','💗','🎊','✨','💛','🩷','🎁'];
+  for (let i = 0; i < 14; i++) {
+    const b = document.createElement('div');
+    b.className = 'balloon';
+    b.textContent = balloonEmojis[Math.floor(Math.random() * balloonEmojis.length)];
+    const dur = (Math.random() * 10 + 12).toFixed(1);
+    b.style.cssText = `left:${Math.random()*100}%;animation-duration:${dur}s;animation-delay:${(Math.random()*10).toFixed(1)}s;font-size:${(Math.random()*1.2+1.6).toFixed(1)}rem`;
+    document.body.appendChild(b);
+  }
+ 
+  /* ── Ticker ── */
+  const tickerEmojis = ['🎂','🎉','🎈','💖','✨','🥳','🌟','🎊','💛','🩷','🎁','🎀','🌸','💫','🎶','🍰'];
+  const ticker = document.getElementById('ticker');
+  const tickerStr = [...tickerEmojis, ...tickerEmojis].map(e => `<span>${e}</span>`).join('');
+  ticker.innerHTML = tickerStr + tickerStr; // duplicate for seamless loop
+ 
+  /* ── Cake pop ── */
+  let cakeCount = 0;
+  const cakeMsgs = ['🎂 Yummy!', '😋 Delicious!', '🎉 Party time!', '💖 So sweet!', '✨ Magic cake!'];
+  function cakePop() {
+    cakeCount++;
+    const cake = document.getElementById('cake');
+    cake.textContent = ['🎂','🍰','🧁','🎉','💖'][cakeCount % 5];
+    spawnParticles(cake);
+    showToast(cakeMsgs[cakeCount % cakeMsgs.length]);
+  }
+ 
+  /* ── Make wish ── */
+  const confColors = ['#ff6b9d','#ffb347','#ffd93d','#43e97b','#38f9d7','#a78bfa','#ffffff','#ff9ff3'];
+  const shapes = ['●','★','♥','✦','▲'];
+  function makeWish() {
+    const btn = document.querySelector('.wish-btn');
+    const rect = btn.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    for (let i = 0; i < 90; i++) {
+      spawnConfettiAt(cx, cy);
+    }
+    showToast('🎂 Wishes sent to Dev! 💌');
+  }
+ 
+  function spawnConfettiAt(cx, cy) {
+    const c = document.createElement('div');
+    c.className = 'confetti-piece';
+    const angle = Math.random() * 360;
+    const dist = 150 + Math.random() * 250;
+    const size = Math.random() * 10 + 6;
+    const dur = (Math.random() * 1.2 + 1).toFixed(2);
+    c.style.cssText = `
+      left:${cx}px; top:${cy}px;
+      width:${size}px; height:${size}px;
+      background:${confColors[Math.floor(Math.random()*confColors.length)]};
+      --tx:${Math.cos(angle*Math.PI/180)*dist}px;
+      --ty:${Math.sin(angle*Math.PI/180)*dist - 100}px;
+      --rot:${(Math.random()*720-360).toFixed(0)}deg;
+      --dur:${dur}s;
+      --br:${Math.random() > .5 ? '50%' : '2px'};
+      animation-delay:${(Math.random()*.2).toFixed(2)}s;
+    `;
+    document.body.appendChild(c);
+    setTimeout(() => c.remove(), (+dur + .3) * 1000);
+  }
+ 
+  function spawnParticles(el) {
+    const rect = el.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    for (let i = 0; i < 30; i++) spawnConfettiAt(cx, cy);
+  }
+ 
+  /* ── Toast ── */
+  let toastTimer;
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2500);
+  }
+ 
+  /* ── Toggle Letter ── */
+  function toggleLetter() {
+    const btn = document.getElementById('letterBtn');
+    const body = document.getElementById('letterBody');
+    btn.classList.toggle('open');
+    body.classList.toggle('open');
+  }
+ 
+  /* ── Auto confetti on load ── */
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      for (let i = 0; i < 60; i++) {
+        const x = Math.random() * window.innerWidth;
+        const y = -20;
+        spawnConfettiAt(x, y + Math.random() * 200);
+      }
+    }, 800);
+  });
+</script>
+</body>
+</html>
+ 
